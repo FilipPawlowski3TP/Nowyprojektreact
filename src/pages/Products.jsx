@@ -29,7 +29,7 @@ function Products() {
     const [cart, setCart] = useState([]);
     const addToCart = (product) => {
         setCart([...cart, product]);
-        console.log(`${product.name} dodano do koszyka!`);
+        console.log(`${product.name} dodano do koszyka 👌`);
     };
 
     return (
