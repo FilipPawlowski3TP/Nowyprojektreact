@@ -7,3 +7,16 @@
     background-color: #E0DACA;
     color: white;
 }
+
+.hero{
+    background: url("src/assets/herosection.jpg") no-repeat fixed center;
+    min-height: 92vh;
+    width: 100%;
+    position: relative;
+    background-size: cover;
+}
+
+.hero-content{
+    color: #E0DACA;
+    margin-bottom: 300px;
+}
