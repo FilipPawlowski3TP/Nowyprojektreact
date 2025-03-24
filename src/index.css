@@ -18,5 +18,25 @@
 
 .hero-content{
     color: #E0DACA;
-    margin-bottom: 300px;
+    margin-bottom: 450px;
+}
+
+.new-arrivals{
+    background-color: #E0DACA;
+}
+
+.card-body .btn{
+    background-color: #B5838D;
+    color: white;
+    border-color: #6d6875;
+}
+
+.card-body .btn:hover{
+    background-color: white;
+    color: #B5838D;
+    border-color: #6d6875;
+}
+
+.bestsellers{
+    background-color: #C4B294;
 }
