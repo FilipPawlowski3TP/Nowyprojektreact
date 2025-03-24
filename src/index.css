@@ -1,6 +1,18 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
+}
+
+h1, h2, h3, h4, h5{
+    font-family: "Playfair Display", serif;
+}
+
+p, .btn{
+    font-family: "Lora", serif !important;
 }
 
 .navbar{
@@ -39,4 +51,21 @@
 
 .bestsellers{
     background-color: #C4B294;
+}
+
+.newsletter{
+    background-color: #6d6875;
+    color: white;
+}
+
+.newsletter .btn{
+    background-color: #E0DACA;
+    color: #6d6875;
+    border-color: white;
+}
+
+.newsletter .btn:hover{
+    background-color: #6d6875;
+    color: #E0DACA;
+    border-color: white;
 }
