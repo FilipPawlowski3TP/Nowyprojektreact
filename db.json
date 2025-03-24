@@ -1,0 +1,94 @@
+{
+  "perfumy": [
+    {
+      "id": "1",
+      "nazwa": "Chanel No. 5",
+      "marka": "Chanel",
+      "cena": "450"
+    },
+    {
+      "id": "2",
+      "nazwa": "Dior Sauvage",
+      "marka": "Dior",
+      "cena": "350"
+    },
+    {
+      "id": "3",
+      "nazwa": "Tom Ford Black Orchid",
+      "marka": "Tom Ford",
+      "cena": "500"
+    },
+    {
+      "id": "4",
+      "nazwa": "Creed Aventus",
+      "marka": "Creed",
+      "cena": "700"
+    },
+    {
+      "id": "5",
+      "nazwa": "Yves Saint Laurent Libre",
+      "marka": "Yves Saint Laurent",
+      "cena": "420"
+    },
+    {
+      "id": "6",
+      "nazwa": "Gucci Guilty",
+      "marka": "Gucci",
+      "cena": "380"
+    },
+    {
+      "id": "7",
+      "nazwa": "Jo Malone London Wood Sage & Sea Salt",
+      "marka": "Jo Malone",
+      "cena": "330"
+    },
+    {
+      "id": "8",
+      "nazwa": "Chloé Nomade",
+      "marka": "Chloé",
+      "cena": "370"
+    },
+    {
+      "id": "9",
+      "nazwa": "Viktor & Rolf Flowerbomb",
+      "marka": "Viktor & Rolf",
+      "cena": "450"
+    },
+    {
+      "id": "10",
+      "nazwa": "Armani Code",
+      "marka": "Giorgio Armani",
+      "cena": "410"
+    },
+    {
+      "id": "11",
+      "nazwa": "Marc Jacobs Daisy",
+      "marka": "Marc Jacobs",
+      "cena": "300"
+    },
+    {
+      "id": "12",
+      "nazwa": "Prada Candy",
+      "marka": "Prada",
+      "cena": "420"
+    },
+    {
+      "id": "13",
+      "nazwa": "Maison Francis Kurkdjian Baccarat Rouge 540",
+      "marka": "Maison Francis Kurkdjian",
+      "cena": "700"
+    },
+    {
+      "id": "14",
+      "nazwa": "Paco Rabanne 1 Million ",
+      "marka": "Paco Rabanne",
+      "cena": "370"
+    },
+    {
+      "id": "2364",
+      "nazwa": "Hugo Boss Bottled",
+      "marka": "Hugo Boss",
+      "cena": "380"
+    }
+  ]
+}

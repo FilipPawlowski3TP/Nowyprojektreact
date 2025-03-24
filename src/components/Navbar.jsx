@@ -42,7 +42,15 @@ const Navbar = () => {
                                 to="/contact"
                                 className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
                             >
-                            Kontakt
+                                Kontakt
+                            </NavLink>
+                        </li>
+                        <li className="nav-item">
+                            <NavLink
+                                to="/addperfume"
+                                className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
+                            >
+                                Dodaj produkt
                             </NavLink>
                         </li>
                     </ul>

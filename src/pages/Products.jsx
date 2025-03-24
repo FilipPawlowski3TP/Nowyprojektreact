@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
-
-const productsList = [
-    { id: 1, name: 'Nowy Zapach 1', price: 179.99 },
-    { id: 2, name: 'Nowy Zapach 2', price: 699.99 },
-    { id: 3, name: 'Nowy Zapach 3', price: 459.99 },
-    { id: 4, name: 'Nowy Zapach 4', price: 299.99 },
-    { id: 5, name: 'Nowy Zapach 5', price: 159.99 },
-    { id: 6, name: 'Nowy Zapach 6', price: 99.99 },
-];
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 // Komponent karty produktu
 const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="card mb-4" style={{ width: '18rem' }}>
             <div className="card-body">
-                <h5 className="card-title">{product.name}</h5>
-                <p className="card-text">Cena: {product.price} zł</p>
+                <h5 className="card-title">{product.nazwa}</h5>
+                <p className="card-text">Cena: {product.cena} zł</p>
                 <button className="btn btn-primary" onClick={() => onAddToCart(product)}>
                     Dodaj do koszyka
                 </button>
@@ -25,12 +17,36 @@ const ProductCard = ({ product, onAddToCart }) => {
 };
 
 function Products() {
-    const [products] = useState(productsList);
+    const [products, setProducts] = useState([]);
     const [cart, setCart] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+
+    useEffect(() => {
+        // Pobieranie produktów z JSON Server
+        axios.get('http://localhost:5000/perfumy')
+            .then((response) => {
+                setProducts(response.data);
+                setLoading(false);
+            })
+            .catch((err) => {
+                setError('Błąd podczas pobierania produktów');
+                setLoading(false);
+            });
+    }, []);
+
     const addToCart = (product) => {
         setCart([...cart, product]);
-        console.log(`${product.name} dodano do koszyka 👌`);
+        console.log(`${product.nazwa} dodano do koszyka 👌`);
     };
+
+    if (loading) {
+        return <div>Ładowanie...</div>;
+    }
+
+    if (error) {
+        return <div>{error}</div>;
+    }
 
     return (
         <div className="container my-5">

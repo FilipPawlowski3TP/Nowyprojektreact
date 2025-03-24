@@ -5,13 +5,17 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "server": "json-server --watch db.json --port 5000",
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
   "dependencies": {
     "@shadcn/ui": "^0.0.4",
+    "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
+    "json-server": "^1.0.0-beta.3",
+    "optional": "^0.1.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-router-dom": "^7.2.0",
