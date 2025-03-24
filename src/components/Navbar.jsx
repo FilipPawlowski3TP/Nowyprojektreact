@@ -5,7 +5,7 @@ import '/src/index.css'
 
 const Navbar = () => {
     return (
-        <nav className="navbar navbar-expand-lg ">
+        <nav className="navbar navbar-expand-lg">
             <div className="container-fluid">
                 <span className="navbar-brand">
                     <img src="/src/assets/logo.jpg" alt="Bootstrap" width="60"

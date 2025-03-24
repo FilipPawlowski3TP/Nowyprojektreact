@@ -8,7 +8,7 @@ const Home = () => {
                 <div className="hero-content">
                     <h1 className="display-2">Odkryj perfumy, które mówią za Ciebie</h1>
                     <p className="lead">Najlepsze zapachy w jednym miejscu</p>
-                    <Link to="/products" className="btn btn-primary btn-lg">Zacznij zakupy</Link>
+                    <Link to="/products" className="btn btn-outline-light btn-lg" >Zacznij zakupy</Link>
                 </div>
             </section>
 
@@ -16,7 +16,7 @@ const Home = () => {
                 <div className="container text-center">
                     <h2>Nowości w naszej ofercie</h2>
                     <p className="lead">Zobacz najnowsze zapachy i odkryj wyjątkowe kompozycje.</p>
-                    <div className="row">
+                    <div className="row my-4">
                         <div className="col-md-4 mb-4">
                             <div className="card text-center">
                                 <div className="d-flex justify-content-center">
@@ -65,13 +65,13 @@ const Home = () => {
                 </div>
             </section>
 
-            <section className="bestsellers py-5 bg-light">
+            <section className="bestsellers py-5">
                 <div className="container text-center">
                     <h2>Bestsellery</h2>
                     <p className="lead">Poznaj najczęściej wybierane zapachy.</p>
-                    <div className="row">
+                    <div className="row my-4">
                         <div className="col-md-4 mb-4">
-                            <div className="card">
+                            <div className="card text-center">
                                 <img src="/src/assets/dior.jpg" className="card-img-top" alt="Bestseller 1"
                                      style={{maxHeight: '25em', maxWidth: '15em'}}/>
                                 <div className="card-body">
@@ -82,7 +82,7 @@ const Home = () => {
                             </div>
                         </div>
                         <div className="col-md-4 mb-4">
-                            <div className="card">
+                            <div className="card text-center">
                                 <img src="/src/assets/ogien.jpg" className="card-img-top" alt="Bestseller 2"
                                      style={{maxHeight: '25em', maxWidth: '15em'}}/>
                                 <div className="card-body">
