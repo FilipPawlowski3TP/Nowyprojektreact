@@ -1,12 +1,43 @@
-# React + Vite
+# Filip Pawlowski | Kajetan Kafka | 4TP
+# Perfumeria Online
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Aplikacja internetowa stworzona w React do sprzedaży perfum. Projekt wykorzystuje nowoczesne technologie i oferuje przyjazny interfejs użytkownika.
 
-Currently, two official plugins are available:
+## Funkcjonalności
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Przeglądanie katalogu perfum
+- Dodawanie produktów do koszyka
+- Zarządzanie produktami (dodawanie nowych perfum)
+- Formularz kontaktowy
 
-## Expanding the ESLint configuration
+## Technologie
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- Bootstrap 5
+- JSON Server (mock API)
+- Axios
+- AOS (Animate On Scroll)
+
+## Jak uruchomić
+
+1. Zainstaluj zależności:
+npm install
+
+2. Uruchom JSON Server (baza danych):
+
+npx json-server --watch db.json --port 5000
+
+
+3. Uruchom aplikację:
+
+npm run dev
+
+## Struktura projektu
+
+- `/src/components` - Komponenty wielokrotnego użytku
+- `/src/pages` - Główne strony aplikacji
+- `/src/assets` - Zasoby statyczne (zdjęcia, ikony)
+- `db.json` - Baza danych JSON Server
+
+
+

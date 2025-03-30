@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@shadcn/ui": "^0.0.4",
+    "aos": "^2.3.4",
     "axios": "^1.8.4",
     "bootstrap": "^5.3.3",
     "json-server": "^1.0.0-beta.3",

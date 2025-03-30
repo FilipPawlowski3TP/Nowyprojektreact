@@ -1,119 +1,111 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
-const AddProduct = () => {
-    const [nazwa, setNazwa] = useState('');
-    const [marka, setMarka] = useState('');
-    const [cena, setCena] = useState('');
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(true);
+function AddPerfume() {
+    const navigate = useNavigate();
+    const [formData, setFormData] = useState({
+        nazwa: '',
+        marka: '',
+        cena: ''
+    });
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
 
-    const handleAddProduct = async (e) => {
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        const newProduct = {
-            nazwa,
-            marka,
-            cena,
-        };
+        setLoading(true);
+        setError(null);
 
         try {
-            const response = await axios.post('http://localhost:5000/perfumy', newProduct);
-            setProducts([...products, response.data]);
-            setNazwa('');
-            setMarka('');
-            setCena('');
-        } catch (error) {
-            console.error('Błąd dodawania produktu:', error);
-        }
-    };
-
-    // Funkcja do usuwania produktu
-    const handleDeleteProduct = async (id) => {
-        try {
-            await axios.delete(`http://localhost:5001/perfumy/${id}`);
-            setProducts(products.filter((product) => product.id !== id)); // Usuwamy produkt z listy
-        } catch (error) {
-            console.error('Błąd usuwania produktu:', error);
-        }
-    };
-
-
-    const loadProducts = async () => {
-        try {
-            const response = await axios.get('http://localhost:5000/perfumy');
-            setProducts(response.data);
+            await axios.post('http://localhost:5000/perfumy', formData);
+            navigate('/products'); // Przekierowanie do listy produktów
+        } catch (err) {
+            setError('Wystąpił błąd podczas dodawania produktu.');
+            console.error('Błąd:', err);
+        } finally {
             setLoading(false);
-        } catch (error) {
-            console.error('Błąd ładowania produktów:', error);
         }
     };
-
-    useEffect(() => {
-        loadProducts();
-    }, []);
-
-    if (loading) return <p>Ładowanie produktów...</p>;
 
     return (
-        <div className="container">
-            <h2>Dodaj Nowy Perfum</h2>
-            <form onSubmit={handleAddProduct}>
-                <div className="form-group">
-                    <label>Nazwa</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={nazwa}
-                        onChange={(e) => setNazwa(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Marka</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={marka}
-                        onChange={(e) => setMarka(e.target.value)}
-                        required
-                    />
-                </div>
-                <div className="form-group">
-                    <label>Cena</label>
-                    <input
-                        type="text"
-                        className="form-control"
-                        value={cena}
-                        onChange={(e) => setCena(e.target.value)}
-                        required
-                    />
-                </div>
-                <button type="submit" className="btn btn-primary mt-3">
-                    Dodaj Perfume
-                </button>
-            </form>
+        <div className="add-perfume-section py-5">
+            <div className="container">
+                <div className="row justify-content-center">
+                    <div className="col-md-8 col-lg-6">
+                        <div className="card border-0 shadow-sm">
+                            <div className="card-body p-4">
+                                <h1 className="text-center mb-4">Dodaj Nowy Produkt</h1>
+                                
+                                {error && (
+                                    <div className="alert alert-danger" role="alert">
+                                        {error}
+                                    </div>
+                                )}
 
-            <h2 className="mt-5">Lista Perfumerii</h2>
-            <div className="row">
-                {products.map((product) => (
-                    <div className="col-md-4 mb-4" key={product.id}>
-                        <div className="card text-center">
-                            <div className="card-body">
-                                <h5 className="card-title">{product.nazwa}</h5>
-                                <p className="card-text">{product.cena} zł</p>
-                                <button
-                                    className="btn btn-danger"
-                                    onClick={() => handleDeleteProduct(product.id)}
-                                >
-                                    Usuń
-                                </button>
+                                <form onSubmit={handleSubmit}>
+                                    <div className="mb-3">
+                                        <label htmlFor="nazwa" className="form-label">Nazwa perfum</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="nazwa"
+                                            name="nazwa"
+                                            value={formData.nazwa}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="mb-3">
+                                        <label htmlFor="marka" className="form-label">Marka</label>
+                                        <input
+                                            type="text"
+                                            className="form-control"
+                                            id="marka"
+                                            name="marka"
+                                            value={formData.marka}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+
+                                    <div className="mb-4">
+                                        <label htmlFor="cena" className="form-label">Cena (zł)</label>
+                                        <input
+                                            type="number"
+                                            className="form-control"
+                                            id="cena"
+                                            name="cena"
+                                            value={formData.cena}
+                                            onChange={handleChange}
+                                            required
+                                        />
+                                    </div>
+
+                                    <button 
+                                        type="submit" 
+                                        className="btn w-100"
+                                        disabled={loading}
+                                    >
+                                        {loading ? 'Dodawanie...' : 'Dodaj produkt'}
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>
-                ))}
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default AddProduct;
+export default AddPerfume;

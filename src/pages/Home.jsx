@@ -1,14 +1,16 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
-AOS.init({
-    duration: 2000,
-    once: true,
-});
-
 const Home = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    }, []);
+
     return (
         <div className="home">
             <section className="hero d-flex justify-content-center align-items-center text-center">
@@ -21,66 +23,66 @@ const Home = () => {
 
             <section className="new-arrivals py-5">
                 <div className="container text-center">
-                    <h2 data-aos="fade-up">Nowości w naszej ofercie</h2>
-                    <p className="lead" data-aos="fade-up" data-aos-delay="100">
+                    <h2 className="mb-2" data-aos="fade-up">Nowości w naszej ofercie</h2>
+                    <p className="lead mb-5" data-aos="fade-up" data-aos-delay="100">
                         Zobacz najnowsze zapachy i odkryj wyjątkowe kompozycje.
                     </p>
-                    <div className="row my-4">
-                        <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-                            <div className="card text-center">
-                                <div className="d-flex justify-content-center">
+                    <div className="row g-4 justify-content-center">
+                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+                            <div className="product-card">
+                                <div className="product-img-container">
                                     <img
                                         src="/src/assets/sztaba.jpg"
-                                        className="card-img-top"
+                                        className="product-img"
                                         alt="Nowy zapach 1"
-                                        style={{maxHeight: '25em', maxWidth: '15em'}}
+                                        loading="lazy"
                                     />
                                 </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">Nowy Zapach 1</h5>
-                                    <p className="card-text">99.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                <div className="card-body text-center p-4">
+                                    <h5 className="card-title mb-2">Nowy Zapach 1</h5>
+                                    <p className="card-text mb-3">99.99zł</p>
+                                    <button className="btn w-100">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-                            <div className="card text-center">
-                                <div className="d-flex justify-content-center">
+                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+                            <div className="product-card">
+                                <div className="product-img-container">
                                     <img
                                         src="/src/assets/vers.jpg"
-                                        className="card-img-top"
+                                        className="product-img"
                                         alt="Nowy zapach 2"
-                                        style={{maxHeight: '25em', maxWidth: '15em'}}
+                                        loading="lazy"
                                     />
                                 </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">Nowy Zapach 2</h5>
-                                    <p className="card-text">119.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                <div className="card-body text-center p-4">
+                                    <h5 className="card-title mb-2">Nowy Zapach 2</h5>
+                                    <p className="card-text mb-3">119.99zł</p>
+                                    <button className="btn w-100">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="400">
-                            <div className="card text-center">
-                                <div className="d-flex justify-content-center">
+                        <div className="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+                            <div className="product-card">
+                                <div className="product-img-container">
                                     <img
                                         src="/src/assets/hugo.jpg"
-                                        className="card-img-top"
+                                        className="product-img"
                                         alt="Nowy zapach 3"
-                                        style={{maxHeight: '25em', maxWidth: '15em'}}
+                                        loading="lazy"
                                     />
                                 </div>
-                                <div className="card-body">
-                                    <h5 className="card-title">Nowy Zapach 3</h5>
-                                    <p className="card-text">129.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                <div className="card-body text-center p-4">
+                                    <h5 className="card-title mb-2">Nowy Zapach 3</h5>
+                                    <p className="card-text mb-3">129.99zł</p>
+                                    <button className="btn w-100">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <Link
                         to="/products"
-                        className="btn btn-secondary btn-lg"
+                        className="btn btn-lg mt-5"
                         data-aos="fade-up"
                         data-aos-delay="500"
                     >
@@ -91,70 +93,119 @@ const Home = () => {
 
             <section className="bestsellers py-5">
                 <div className="container text-center">
-                    <h2>Bestsellery</h2>
-                    <p className="lead">Poznaj najczęściej wybierane zapachy.</p>
-                    <div className="row my-4">
-                        <div className="col-md-4 mb-4">
-                            <div className="card">
-                                <img src="/src/assets/dior.jpg" className="card-img-top" alt="Bestseller 1"
-                                     style={{maxHeight: '25em', maxWidth: '15em'}}/>
-                                <div className="card-body">
+                    <h2 className="mb-2">Bestsellery</h2>
+                    <p className="lead mb-5">Poznaj najczęściej wybierane zapachy.</p>
+                    <div className="row g-4">
+                        <div className="col-md-4">
+                            <div className="product-card card h-100 border-0 shadow-sm">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/dior.jpg" 
+                                        className="product-img" 
+                                        alt="Bestseller 1"
+                                    />
+                                </div>
+                                <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">Bestseller 1</h5>
-                                    <p className="card-text">89.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                    <p className="card-text mb-4">89.99zł</p>
+                                    <button className="btn mt-auto">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 mb-4">
-                            <div className="card">
-                                <img src="/src/assets/ogien.jpg" className="card-img-top" alt="Bestseller 2"
-                                     style={{maxHeight: '25em', maxWidth: '15em'}}/>
-                                <div className="card-body">
+                        <div className="col-md-4">
+                            <div className="product-card card h-100 border-0 shadow-sm">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/ogien.jpg" 
+                                        className="product-img" 
+                                        alt="Bestseller 2"
+                                    />
+                                </div>
+                                <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">Bestseller 2</h5>
-                                    <p className="card-text">109.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                    <p className="card-text mb-4">109.99zł</p>
+                                    <button className="btn mt-auto">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-md-4 mb-4">
-                            <div className="card">
-                                <img src="/src/assets/ziomal.jpg" className="card-img-top" alt="Bestseller 3"
-                                     style={{maxHeight: '25em', maxWidth: '15em'}}/>
-                                <div className="card-body">
+                        <div className="col-md-4">
+                            <div className="product-card card h-100 border-0 shadow-sm">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/ziomal.jpg" 
+                                        className="product-img" 
+                                        alt="Bestseller 3"
+                                    />
+                                </div>
+                                <div className="card-body d-flex flex-column">
                                     <h5 className="card-title">Bestseller 3</h5>
-                                    <p className="card-text">119.99zł</p>
-                                    <button className="btn btn-primary">Kup teraz</button>
+                                    <p className="card-text mb-4">119.99zł</p>
+                                    <button className="btn mt-auto">Kup teraz</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <Link to="/products" className="btn btn-secondary btn-lg">Zobacz nasze bestsellery</Link>
+                    <Link to="/products" className="btn btn-lg mt-5">Zobacz nasze bestsellery</Link>
                 </div>
             </section>
 
             <section className="brands py-5">
                 <div className="container text-center">
-                    <h2>Ekskluzywne marki</h2>
-                    <p className="lead">Wybierz spośród najlepszych marek na rynku.</p>
-                    <div className="d-flex justify-content-center mt-4 mb-3">
-                        <img src="/src/assets/valentino.jpg" alt="Marka 1" className="img-fluid me-5"
-                             style={{maxHeight: '25em', maxWidth: '15em'}}/>
-                        <img src="/src/assets/gucci.jpg" alt="Marka 2" className="img-fluid mx-5"
-                             style={{maxHeight: '25em', maxWidth: '15em'}}/>
-                        <img src="/src/assets/robot.jpg" alt="Marka 3" className="img-fluid ms-5"
-                             style={{maxHeight: '25em', maxWidth: '15em'}}/>
+                    <h2 className="mb-2">Ekskluzywne marki</h2>
+                    <p className="lead mb-5">Wybierz spośród najlepszych marek na rynku.</p>
+                    <div className="row g-4 justify-content-center">
+                        <div className="col-md-4">
+                            <div className="brand-card">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/valentino.jpg" 
+                                        className="product-img" 
+                                        alt="Marka 1"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="brand-card">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/gucci.jpg" 
+                                        className="product-img" 
+                                        alt="Marka 2"
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                        <div className="col-md-4">
+                            <div className="brand-card">
+                                <div className="product-img-container">
+                                    <img 
+                                        src="/src/assets/robot.jpg" 
+                                        className="product-img" 
+                                        alt="Marka 3"
+                                    />
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <Link to="/brands" className="btn btn-secondary btn-lg">Zobacz wszystkie marki</Link>
+                    <Link to="/brands" className="btn btn-lg mt-5">Zobacz wszystkie marki</Link>
                 </div>
             </section>
 
             <section className="newsletter py-5">
                 <div className="container text-center">
-                    <h2 className="text-center">Zapisz się do naszego newslettera</h2>
-                    <p className="lead text-center">Bądź na bieżąco z nowościami i promocjami!</p>
-                    <form className="form-inline d-flex justify-content-center w-50 my-2 mx-auto">
-                        <input type="email" className="form-control w-75" placeholder="Twój email" required/>
-                        <button type="submit" className="btn btn-primary ms-2">Zapisz się</button>
+                    <h2 className="mb-2">Zapisz się do naszego newslettera</h2>
+                    <p className="lead mb-4">Bądź na bieżąco z nowościami i promocjami!</p>
+                    <form className="newsletter-form mx-auto">
+                        <div className="input-group">
+                            <input 
+                                type="email" 
+                                className="form-control" 
+                                placeholder="Twój email" 
+                                required
+                            />
+                            <button type="submit" className="btn">Zapisz się</button>
+                        </div>
                     </form>
                 </div>
             </section>
@@ -163,3 +214,5 @@ const Home = () => {
 };
 
 export default Home;
+
+
