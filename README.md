@@ -1,4 +1,4 @@
-# Filip Pawlowski | Kajetan Kafka | 4TP
+# Filip Pawlowski | Kajetan Kafka | Michal Sliwka |4TP
 # Perfumeria Online
 
 Aplikacja internetowa stworzona w React do sprzedaży perfum. Projekt wykorzystuje nowoczesne technologie i oferuje przyjazny interfejs użytkownika.
