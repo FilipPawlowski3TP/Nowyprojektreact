@@ -6,6 +6,7 @@ import About from './pages/About';
 import Products from './pages/Products.jsx';
 import Contact from "./pages/Contact.jsx";
 import AddPerfume from "./pages/AddPerfume.jsx";
+import Koszyk from './components/Koszyk';
 
 function App() {
     return (
@@ -20,6 +21,7 @@ function App() {
                         <Route path="/products" element={<Products />} />
                         <Route path="/contact" element={<Contact />} />
                         <Route path="/addperfume" element={<AddPerfume />} />
+                        <Route path="/koszyk" element={<Koszyk />} />
                     </Routes>
                 </div>
             </div>

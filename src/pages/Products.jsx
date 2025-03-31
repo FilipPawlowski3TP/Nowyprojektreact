@@ -39,7 +39,7 @@ function Products() {
             try {
                 setLoading(true);
                 const response = await axios.get('http://localhost:5000/perfumy', {
-                    timeout: 5000, // Timeout po 5 sekundach
+                    timeout: 5000,
                     headers: {
                         'Cache-Control': 'no-cache',
                         'Pragma': 'no-cache'
@@ -47,7 +47,6 @@ function Products() {
                 });
                 
                 if (mounted && response.data) {
-                    // Upewniamy się, że mamy wszystkie produkty
                     if (Array.isArray(response.data) && response.data.length > 0) {
                         setProducts(response.data);
                         setError(null);
@@ -67,6 +66,17 @@ function Products() {
             }
         };
 
+        const fetchCart = async () => {
+            try {
+                const response = await axios.get('http://localhost:5000/koszyk');
+                if (mounted) {
+                    setCart(response.data);
+                }
+            } catch (err) {
+                console.error('Błąd podczas pobierania koszyka:', err);
+            }
+        };
+
         // Inicjalizacja AOS
         AOS.init({
             duration: 800,
@@ -75,6 +85,7 @@ function Products() {
         });
 
         fetchProducts();
+        fetchCart();
 
         // Cleanup function
         return () => {
@@ -82,17 +93,37 @@ function Products() {
         };
     }, []);
 
-    const addToCart = (product) => {
-        setCart(prevCart => [...prevCart, product]);
-        
-        const notification = document.createElement('div');
-        notification.className = 'notification fade-in';
-        notification.textContent = `${product.nazwa} dodano do koszyka`;
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.remove();
-        }, 3000);
+    const addToCart = async (product) => {
+        try {
+            // Dodaj produkt do koszyka w bazie danych
+            const response = await axios.post('http://localhost:5000/koszyk', {
+                ...product,
+                quantity: 1
+            });
+            
+            // Aktualizuj stan koszyka
+            setCart(prevCart => [...prevCart, response.data]);
+            
+            // Pokaż powiadomienie
+            const notification = document.createElement('div');
+            notification.className = 'notification fade-in';
+            notification.textContent = `${product.nazwa} dodano do koszyka`;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+
+            // Odśwież licznik w nawigacji
+            const cartCountElement = document.querySelector('.badge');
+            if (cartCountElement) {
+                const currentCount = parseInt(cartCountElement.textContent) || 0;
+                cartCountElement.textContent = currentCount + 1;
+            }
+        } catch (err) {
+            console.error('Błąd podczas dodawania do koszyka:', err);
+            alert('Nie udało się dodać produktu do koszyka. Spróbuj ponownie.');
+        }
     };
 
     if (loading) {
