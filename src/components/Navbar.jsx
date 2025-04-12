@@ -22,7 +22,7 @@ const Navbar = () => {
 
     const fetchCartCount = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/koszyk');
+            const response = await axios.get('http://localhost:5000/koszyk');
             setCartCount(response.data.length);
         } catch (error) {
             console.error('Błąd podczas pobierania liczby produktów w koszyku:', error);
@@ -31,6 +31,8 @@ const Navbar = () => {
 
     useEffect(() => {
         fetchCartCount();
+        const interval = setInterval(fetchCartCount, 5000);
+        return () => clearInterval(interval);
     }, []);
 
     return (

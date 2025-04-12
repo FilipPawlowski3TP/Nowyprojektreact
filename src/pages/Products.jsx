@@ -99,17 +99,27 @@ function Products() {
         };
     }, []);
 
-    const addToCart = (product) => {
+    const addToCart = async (product) => {
         if (!user) {
             toast.error('Musisz być zalogowany, aby dodać produkt do koszyka');
             navigate('/login');
             return;
         }
 
-        const updatedCart = [...cart, product];
-        setCart(updatedCart);
-        localStorage.setItem('cart', JSON.stringify(updatedCart));
-        toast.success('Produkt dodany do koszyka!');
+        try {
+            const response = await axios.post('http://localhost:5000/koszyk', {
+                ...product,
+                quantity: 1
+            });
+            
+            if (response.data) {
+                setCart(prevCart => [...prevCart, response.data]);
+                toast.success('Produkt dodany do koszyka!');
+            }
+        } catch (err) {
+            toast.error('Nie udało się dodać produktu do koszyka');
+            console.error('Błąd:', err);
+        }
     };
 
     if (loading) {
