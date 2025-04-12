@@ -91,13 +91,5 @@
       "cena": "380"
     }
   ],
-  "koszyk": [
-    {
-      "id": "14",
-      "nazwa": "Paco Rabanne 1 Million ",
-      "marka": "Paco Rabanne",
-      "cena": "370",
-      "quantity": 3
-    }
-  ]
+  "koszyk": []
 }

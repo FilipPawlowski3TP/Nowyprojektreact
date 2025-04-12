@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { useAuth } from '../context/AuthContext';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 // Komponent karty produktu
 const ProductCard = ({ product, onAddToCart }) => {
@@ -31,6 +35,8 @@ function Products() {
     const [cart, setCart] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const { user } = useAuth();
+    const navigate = useNavigate();
 
     useEffect(() => {
         let mounted = true;
@@ -93,37 +99,17 @@ function Products() {
         };
     }, []);
 
-    const addToCart = async (product) => {
-        try {
-            // Dodaj produkt do koszyka w bazie danych
-            const response = await axios.post('http://localhost:5000/koszyk', {
-                ...product,
-                quantity: 1
-            });
-            
-            // Aktualizuj stan koszyka
-            setCart(prevCart => [...prevCart, response.data]);
-            
-            // Pokaż powiadomienie
-            const notification = document.createElement('div');
-            notification.className = 'notification fade-in';
-            notification.textContent = `${product.nazwa} dodano do koszyka`;
-            document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
-
-            // Odśwież licznik w nawigacji
-            const cartCountElement = document.querySelector('.badge');
-            if (cartCountElement) {
-                const currentCount = parseInt(cartCountElement.textContent) || 0;
-                cartCountElement.textContent = currentCount + 1;
-            }
-        } catch (err) {
-            console.error('Błąd podczas dodawania do koszyka:', err);
-            alert('Nie udało się dodać produktu do koszyka. Spróbuj ponownie.');
+    const addToCart = (product) => {
+        if (!user) {
+            toast.error('Musisz być zalogowany, aby dodać produkt do koszyka');
+            navigate('/login');
+            return;
         }
+
+        const updatedCart = [...cart, product];
+        setCart(updatedCart);
+        localStorage.setItem('cart', JSON.stringify(updatedCart));
+        toast.success('Produkt dodany do koszyka!');
     };
 
     if (loading) {

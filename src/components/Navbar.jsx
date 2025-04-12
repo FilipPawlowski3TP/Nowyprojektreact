@@ -1,27 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '/src/index.css'
+import '/src/index.css';
+import { useAuth } from '../context/AuthContext';
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [cartCount, setCartCount] = useState(0);
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
     };
 
-    useEffect(() => {
-        const fetchCartCount = async () => {
-            try {
-                const response = await axios.get('http://localhost:5000/koszyk');
-                setCartCount(response.data.length);
-            } catch (err) {
-                console.error('Błąd podczas pobierania liczby produktów w koszyku:', err);
-            }
-        };
+    const handleLogout = () => {
+        logout();
+        navigate('/');
+    };
 
+    const fetchCartCount = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/koszyk');
+            setCartCount(response.data.length);
+        } catch (error) {
+            console.error('Błąd podczas pobierania liczby produktów w koszyku:', error);
+        }
+    };
+
+    useEffect(() => {
         fetchCartCount();
     }, []);
 
@@ -86,28 +94,57 @@ const Navbar = () => {
                                 Kontakt
                             </NavLink>
                         </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/addperfume"
-                                className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Dodaj produkt
-                            </NavLink>
-                        </li>
-                        <li className="nav-item">
-                            <NavLink
-                                to="/koszyk"
-                                className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
-                                onClick={() => setIsOpen(false)}
-                            >
-                                Koszyk
-                                {cartCount > 0 && (
-                                    <span className="badge bg-primary ms-2">{cartCount}</span>
-                                )}
-                            </NavLink>
-                        </li>
+                        {user && (
+                            <>
+                                <li className="nav-item">
+                                    <NavLink
+                                        to="/dodaj-produkt"
+                                        className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Dodaj produkt
+                                    </NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink
+                                        to="/koszyk"
+                                        className={({isActive}) => "nav-link" + (isActive ? " active" : "")}
+                                        onClick={() => setIsOpen(false)}
+                                    >
+                                        Koszyk
+                                        {cartCount > 0 && (
+                                            <span className="badge bg-primary ms-2">{cartCount}</span>
+                                        )}
+                                    </NavLink>
+                                </li>
+                            </>
+                        )}
                     </ul>
+                    <div className="d-flex">
+                        {user ? (
+                            <button
+                                onClick={handleLogout}
+                                className="btn btn-outline-danger"
+                            >
+                                Wyloguj się
+                            </button>
+                        ) : (
+                            <>
+                                <NavLink
+                                    to="/login"
+                                    className="btn btn-outline-primary me-2"
+                                >
+                                    Zaloguj się
+                                </NavLink>
+                                <NavLink
+                                    to="/register"
+                                    className="btn btn-primary"
+                                >
+                                    Zarejestruj się
+                                </NavLink>
+                            </>
+                        )}
+                    </div>
                 </div>
             </div>
         </nav>
