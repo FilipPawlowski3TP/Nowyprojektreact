@@ -1,43 +1,76 @@
-# Filip Pawlowski | Kajetan Kafka | Michal Sliwka | 4TP
-# Perfumeria Online
+# Aplikacja React z Systemem Uwierzytelniania
 
-Aplikacja internetowa stworzona w React do sprzedaży perfum. Projekt wykorzystuje nowoczesne technologie i oferuje przyjazny interfejs użytkownika.
+Prosta aplikacja React z systemem logowania i rejestracji, wykorzystująca localStorage jako backend.
+
+## Autorzy
+Filip Pawlowski | Kajetan Kafka | Michal Sliwka | 4TP
 
 ## Funkcjonalności
 
-- Przeglądanie katalogu perfum
-- Dodawanie produktów do koszyka
-- Zarządzanie produktami (dodawanie nowych perfum)
-- Formularz kontaktowy
+- Rejestracja nowych użytkowników
+- Logowanie użytkowników
+- Walidacja formularzy
+- Responsywny interfejs użytkownika
+- Animacje i efekty wizualne
+- System powiadomień
 
 ## Technologie
 
 - React
-- Bootstrap 5
-- JSON Server (mock API)
-- Axios
+- React Router
+- Bootstrap
 - AOS (Animate On Scroll)
+- React Toastify
+- localStorage (backend)
 
-## Jak uruchomić
+## Instalacja
 
 1. Zainstaluj zależności:
+```bash
 npm install
+```
 
 2. Uruchom JSON Server (baza danych):
-
+```bash
 npx json-server --watch db.json --port 5000
-
+```
 
 3. Uruchom aplikację:
-
+```bash
 npm run dev
+```
 
 ## Struktura projektu
 
-- `/src/components` - Komponenty wielokrotnego użytku
-- `/src/pages` - Główne strony aplikacji
-- `/src/assets` - Zasoby statyczne (zdjęcia, ikony)
-- `db.json` - Baza danych JSON Server
+```
+src/
+├── components/
+│   ├── Login.jsx
+│   ├── Register.jsx
+│   └── ...
+├── context/
+│   └── AuthContext.jsx
+├── utils/
+│   └── validation.js
+└── ...
+```
+
+## Walidacja formularzy
+
+Aplikacja zawiera system walidacji dla:
+- Adresu email
+- Hasła
+- Potwierdzenia hasła
+
+## Bezpieczeństwo
+
+- Hasła są przechowywane w localStorage (dla celów demonstracyjnych)
+- Walidacja po stronie klienta
+- Zabezpieczone trasy dla zalogowanych użytkowników
+
+## Licencja
+
+MIT
 
 
 
