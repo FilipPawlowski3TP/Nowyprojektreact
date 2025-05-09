@@ -89,7 +89,23 @@
       "nazwa": "Hugo Boss Bottled",
       "marka": "Hugo Boss",
       "cena": "380"
+    },
+    {
+      "id": "98a5",
+      "nazwa": "piwo",
+      "marka": "rompet",
+      "cena": 4.5,
+      "image": "https://www.diki.pl/slownik-angielskiego"
     }
   ],
-  "koszyk": []
+  "koszyk": [
+    {
+      "id": "98a5",
+      "nazwa": "piwo",
+      "marka": "rompet",
+      "cena": 4.5,
+      "image": "https://www.diki.pl/slownik-angielskiego",
+      "quantity": 3
+    }
+  ]
 }

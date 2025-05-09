@@ -27,7 +27,7 @@ function AddPerfume() {
 
         try {
             await axios.post('http://localhost:5000/perfumy', formData);
-            navigate('/products'); // Przekierowanie do listy produktów
+            navigate('/products');
         } catch (err) {
             setError('Wystąpił błąd podczas dodawania produktu.');
             console.error('Błąd:', err);

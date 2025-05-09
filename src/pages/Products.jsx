@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-// Komponent karty produktu
+
 const ProductCard = ({ product, onAddToCart }) => {
     return (
         <div className="product-card card h-100 border-0 shadow-sm" data-aos="fade-up">
@@ -83,7 +83,6 @@ function Products() {
             }
         };
 
-        // Inicjalizacja AOS
         AOS.init({
             duration: 800,
             once: true,
@@ -93,7 +92,6 @@ function Products() {
         fetchProducts();
         fetchCart();
 
-        // Cleanup function
         return () => {
             mounted = false;
         };

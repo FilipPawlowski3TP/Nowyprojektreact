@@ -19,7 +19,6 @@ function Contact() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Tutaj można dodać logikę wysyłania formularza
         setSubmitted(true);
         setTimeout(() => {
             setSubmitted(false);

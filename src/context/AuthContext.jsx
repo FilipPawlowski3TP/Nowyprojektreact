@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Sprawdzenie czy użytkownik jest zalogowany po odświeżeniu strony
     const storedUser = localStorage.getItem('user');
     if (storedUser) {
       setUser(JSON.parse(storedUser));
@@ -26,8 +25,6 @@ export const AuthProvider = ({ children }) => {
   };
 
   const register = (userData) => {
-    // W prawdziwej aplikacji tutaj byłoby połączenie z API
-    // Na potrzeby demo, zapisujemy użytkownika w localStorage
     const users = JSON.parse(localStorage.getItem('users') || '[]');
     users.push(userData);
     localStorage.setItem('users', JSON.stringify(users));

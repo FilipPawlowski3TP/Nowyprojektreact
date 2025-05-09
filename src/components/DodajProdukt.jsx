@@ -67,8 +67,7 @@ const DodajProdukt = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    // Sprawdzenie wszystkich pól
+
     Object.keys(formData).forEach(field => {
       validateField(field, formData[field]);
     });
